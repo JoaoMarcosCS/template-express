@@ -1,0 +1,22 @@
+import { inject, injectable } from 'tsyringe';
+import { IUserRepository } from '@/modules/users/repository/IUserRepository';
+import { UnauthorizedException } from '@/shared/errors/errors';
+import { MessageError } from '@/shared/enums/erros.enum';
+import { hash } from '@/shared/utils/hash';
+import { AuthTokens, generateTokens } from '../../token/token';
+import { LoginDTO } from './login.schema';
+
+@injectable()
+export class LoginUseCase {
+  constructor(@inject('IUserRepository') private userRepository: IUserRepository) {}
+
+  async execute(data: LoginDTO): Promise<AuthTokens> {
+    const user = await this.userRepository.findByEmailWithPassword(data.email);
+
+    if (!user || !(await hash.compare(data.password, user.password))) {
+      throw new UnauthorizedException(MessageError.INVALID_CREDENTIALS);
+    }
+
+    return generateTokens(user);
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    //permite usar decoradores, necessário para o TypeORM
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    //permite importar módulos CommonJS usando a sintaxe de importação ES6
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    //configura o caminho base para resolver módulos, facilitando as importações
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./src/@types/express"],
+
+    //habilita verificações rigorosas de tipo, melhorando a qualidade do código
+    "skipLibCheck": true,
+
+    //gera arquivos de mapa de origem para facilitar a depuração
+    "sourceMap": true,
+
+    //inclui os tipos do Node.js para permitir o uso de APIs do Node
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

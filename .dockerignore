@@ -1,0 +1,19 @@
+# Dependências e cache
+node_modules
+dist
+coverage
+
+# Git
+.git
+.gitignore
+
+# Configs de dev que não são necessárias no container
+.husky
+.vscode
+*.md
+eslint.config.mts
+vitest.config.ts
+
+# Variáveis de ambiente (serão injetadas pelo docker-compose)
+.env
+.env.*

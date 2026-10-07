@@ -1,0 +1,10 @@
+.env
+node_modules
+dist
+
+# Coverage reports
+coverage
+*.lcov
+
+# Test artifacts
+.jest-cache
